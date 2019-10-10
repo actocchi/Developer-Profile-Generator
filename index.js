@@ -14,13 +14,14 @@ function init() {
   // make inquirer function and axios function to have in here
   inquirer
     .prompt([
-      {
+      { type:"input",
         message: "Enter your GitHub username",
         name: "username"
       },
-      {
+      { type:"list",
         message: "chose a color",
-        name: "color"
+        name: "color",
+        choices:["green", "blue", "pink", "red"]
       }
     ])
     .then(function (userResponses) {
