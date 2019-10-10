@@ -6,14 +6,14 @@ const questions = [
   
 ];
 
-function writeToFile(fileName, data) {
+// function writeToFile(fileName, data) {
  
-};
+// };
 
 function init() {
 // make inquirer function and axios function to have in here
 inquirer
-  .prompt(
+  .prompt([
     {
     message: "Enter your GitHub username",
     name: "username"
@@ -22,7 +22,7 @@ inquirer
     message: "chose a color",
     name: "color"
   }
-  )
+  ])
   .then(function (userResponses) {
     console.log(userResponses); // {username: 'atoci', color: 'blue'}
     let {username, color} = userResponses;
@@ -34,24 +34,24 @@ inquirer
       .get(queryUrl)
       // wait for response
       .then(function (res) {
-        // console.log(res.data);
+      
         //  logs data from call
         // runs a for each for each object/repo 
         res.data.forEach(repo => {
-          names.push(repo.name); //pushes specific name to names array that i made in global variables
+          questions.push(repo.name); //pushes specific name to names array that i made in global variables
 
         });
                                           // what does this 2 dooo? it formats based off of tabs
-        repoNames = JSON.stringify(names, `\n`, 2); //turn the array names into a string named nameJSON
+        repoNames = questions.join("\n"); //turn the array names into a string named nameJSON
         // writes files to new JSONfile named nameJSON and console logs if you did it right
        console.log(repoNames);
         
-       fs.writeFile("names.json", repoNames, err => {
+       fs.writeFile("names.txt", repoNames, err => {
           if (err) {
             throw err;
           }
           // check to see if there were errors on writing
-          console.log("Successfully wrote to names.json file");
+          console.log("Successfully wrote to names.txt file");
         });
 
       });
