@@ -47,13 +47,20 @@ function init() {
         // wait for response
         .then(function ({ data }) {
 
-          let html = generateHTML({ data, userResponses })
+         
 
-
+          axios // Requires a different axios call to get stars
+          .get(`https://api.github.com/users/${username}/repos?per_page=100`)
+          .then((res) => {
+              // console.log(res)
+              data.stars = 0;
+              for (let i = 0; i < res.data.length; i++) { // Loop through each repository and count the number of stars
+                  data.stars += res.data[i].stargazers_count;
+              }
           var conversion = convertFactory({
            converterPath: convertFactory.converters.PDF
           });
-
+          let html = generateHTML({ data, userResponses })
           conversion({html}, function (err, result) {
             if (err) {
               return console.error(err);
@@ -64,21 +71,10 @@ function init() {
             result.stream.pipe(fs.createWriteStream('github.pdf'));
             conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
           });
-          //  logs data from call
-          // runs a for each for each object/repo 
-          // link these to the other factors and not to repos
-          // res.data.forEach(repo => {
-          // });
 
-          //   questions.push(res.data.name, res.data.location, res.data.bio, color, username); //pushes name, user location, bio, and color choice to questions
-
-          //   // need response link to - res.data.location - res.data.html_url - res.data.blog /  res.data.avatar_url  res.data.name res.data.public_repos res.data.followers res.data.following 
-
-          //   console.log(questions);
-
-          //  writeToFile("github.html", {questions});
-
+          });
         });
+
     });
 
 };
