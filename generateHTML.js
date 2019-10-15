@@ -173,44 +173,73 @@ function generateHTML({data, userResponses}) {
          }
       </style>
       <body>
-      <header class="container">
-      <div class='photo-header'>
-        <img src=${data.avatar_url}><br>
-        <h1>Hi!</h1>
-        <h2>My name is ${data.name}</h2>
-        <h3>Currently @${data.company}</h3>
-        <div class="links-nav">
-          <a class="nav-link">${data.location}</a>
-          <a class="nav-link" href="https://github.com/${data.login}">github</a>
-          <a class="nav-link" href="${data.blog}>blog</a>
-        </div>
+      <div class="wrapper">
+         <div class="photo-header">
+            <img src="${data.avatar_url}" alt="Photo of ${data.name}" />
+            <h1>Hi!</h1>
+            <h2>
+            My name is ${data.name}!</h1>
+            <h5>${data.company ? `Currently @ ${data.company}` : ""}</h5>
+            <nav class="links-nav">
+               ${
+                 data.location
+                   ? `<a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/place/${
+                       data.location
+                     }"><i class="fas fa-location-arrow"></i> ${
+                       data.location
+                     }</a>`
+                   : ""
+               }
+               <a class="nav-link" target="_blank" rel="noopener noreferrer" href="${
+                 data.html_url
+               }"><i class="fab fa-github-alt"></i> GitHub</a>
+               ${
+                 data.blog
+                   ? `<a class="nav-link" target="_blank" rel="noopener noreferrer" href="${
+                       data.blog
+                     }"><i class="fas fa-rss"></i> Blog</a>`
+                   : ""
+               }
+            </nav>
+         </div>
+         <main>
+            <div class="container">
+            <div class="row">
+               <div class="col">
+                  <h3>${data.bio ? `${data.bio}` : ""}</h3>
+               </div>
+               </div>
+               <div class="row">
+               <div class="col">
+                  <div class="card">
+                    <h3>Public Repositories</h3>
+                    <h4>${data.public_repos}</h4>
+                  </div>
+               </div>
+                <div class="col">
+                <div class="card">
+                  <h3>Followers</h3>
+                  <h4>${data.followers}</h4>
+                </div>
+               </div>
+               </div>
+               <div class="row">
+               <div class="col">
+               <div class="card">
+                  <h3>GitHub Stars</h3>
+                  <h4>${data.stars}</h4>
+                  </div>
+               </div>
+                <div class="col">
+                <div class="card">
+                  <h3>Following</h3>
+                  <h4>${data.following}</h4>
+                  </div>
+               </div>
+               </div>
+            </div>
+         </main>
       </div>
-    </header>
-    <div class="wrapper">
-      <div class="row">
-      ${data.bio}
-      </div>
-      <div class="row">
-        <div class='col card'>
-          <h2>Public repositories: </h1>
-          ${data.public_repos}
-        </div>
-        <div class="col card">
-          <h2>Followers:</h1>
-          ${data.followers}
-        </div>
-      </div>
-      // <div class="row">
-      //   <div class="card col">
-      //     <h2>Stars:</h2>
-      //     ${data.stars}
-      //   </div>
-        <div class="card col">
-          <h2>Following:</h2>
-          ${data.followers}
-        </div>
-      </div>
-    </div>
       </body>`
         }
         module.exports = {generateHTML};
