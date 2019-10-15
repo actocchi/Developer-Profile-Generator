@@ -1,33 +1,4 @@
-const colors = {
-  green: {
-    wrapperBackground: "#E6E1C3",
-    headerBackground: "#C1C72C",
-    headerColor: "black",
-    photoBorderColor: "#black"
-  },
-  blue: {
-    wrapperBackground: "#5F64D3",
-    headerBackground: "#26175A",
-    headerColor: "white",
-    photoBorderColor: "#73448C"
-  },
-  pink: {
-    wrapperBackground: "#879CDF",
-    headerBackground: "#FF8374",
-    headerColor: "white",
-    photoBorderColor: "#FEE24C"
-  },
-  red: {
-    wrapperBackground: "#DE9967",
-    headerBackground: "#870603",
-    headerColor: "white",
-    photoBorderColor: "white"
-  }
-};
-
-function generateHTML({data, userResponses}) {
-  console.log(data);
-  return `<!DOCTYPE html>
+<!DOCTYPE html>d
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
@@ -173,44 +144,24 @@ function generateHTML({data, userResponses}) {
          }
       </style>
       <body>
-      <header class="container">
-      <div class='photo-header'>
-        <img src=${data.avatar_url}><br>
-        <h1>Hi!</h1>
-        <h2>My name is ${data.name}</h2>
-        <h3>Currently @${data.company}</h3>
-        <div class="links-nav">
-          <a class="nav-link">${data.location}</a>
-          <a class="nav-link" href="https://github.com/${data.login}">github</a>
-          <a class="nav-link" href="${data.blog}>blog</a>
-        </div>
-      </div>
-    </header>
-    <div class="wrapper">
-      <div class="row">
-      ${data.bio}
-      </div>
-      <div class="row">
-        <div class='col card'>
-          <h2>Public repositories: </h1>
-          ${data.public_repos}
-        </div>
-        <div class="col card">
-          <h2>Followers:</h1>
-          ${data.followers}
-        </div>
-      </div>
-      // <div class="row">
-      //   <div class="card col">
-      //     <h2>Stars:</h2>
-      //     ${data.stars}
-      //   </div>
-        <div class="card col">
-          <h2>Following:</h2>
-          ${data.followers}
-        </div>
-      </div>
-    </div>
-      </body>`
-        }
-        module.exports = {generateHTML};
+          <h1>
+            test 1
+          </h1>
+          <h2>
+            test 2
+          </h2>
+          <h3>
+            test 3
+          </h3>
+          <h4>
+            test 4
+          </h4>
+          <h5>
+            test 5
+          </h5>
+          <h6>
+            test 6
+          </h6>
+
+
+      </body>
